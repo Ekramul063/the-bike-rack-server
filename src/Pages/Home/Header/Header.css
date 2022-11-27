@@ -1,0 +1,8 @@
+.header_banner{
+    background-image: url(../../../asets/banner.jpg);
+    width: 100%;
+    height: 450px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
