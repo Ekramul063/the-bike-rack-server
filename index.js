@@ -60,8 +60,8 @@ async function run(){
             res.send(products);
         })
         //get category product
-        app.get('/products/:category',async(req,res)=>{
-            const category = req.body.category;
+        app.get('/products/:categoryName',async(req,res)=>{
+            const category = req.params.categoryName;
             const query = {categoryName:category};
             const categoryProducts =  await productCollection.find(query).toArray();
             res.send(categoryProducts);
