@@ -45,7 +45,7 @@ async function run(){
             res.send(categories);
 
         })
-        //get single category
+       // get single category
         app.get('/categories/:name',async(req,res)=>{
             const brandName = req.params.name;
             const query ={categoryName: brandName};
