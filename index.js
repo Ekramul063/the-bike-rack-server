@@ -17,6 +17,7 @@ async function run(){
     try{
         const usersCollection= client.db('the-bike-rack').collection('users');
         const categoryCollection= client.db('the-bike-rack').collection('categories');
+        const productCollection= client.db('the-bike-rack').collection('products');
 
         //get all users
         app.get('/users',async(req,res)=>{
@@ -51,6 +52,25 @@ async function run(){
             const query ={categoryName: brandName};
             const category = await categoryCollection.findOne(query);
             res.send(category);
+        })
+        //get all product
+        app.get('/products',async(req,res)=>{
+            const query ={};
+            const products = await productCollection.find(query).toArray();
+            res.send(products);
+        })
+        //get category product
+        app.get('/products/:category',async(req,res)=>{
+            const category = req.body.category;
+            const query = {categoryName:category};
+            const categoryProducts =  await productCollection.find(query).toArray();
+            res.send(categoryProducts);
+        })
+        //insert a product
+        app.post('/products',async(req,res)=>{
+            const product = req.body;
+            const result = await productCollection.insertOne(product);
+            res.send(result)
         })
     }
     finally{
